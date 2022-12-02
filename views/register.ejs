@@ -1,0 +1,164 @@
+<%  var xmenu = "Logout" %>
+<%  var xmenuR = "/artisan/logout" %>
+<% if (name !== null && name !== '') { xmenu = "Login"} ;%>
+<% if (xmenu == "Logout") { xmenuR = xmenuR = "/artisan/login"} ;%>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+  <title>BIZBRIDGE</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu" rel="stylesheet">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- Font Awesome -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+  <!-- Bootstrap Scripts -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<section class="colored-section" id="title">
+
+    <div class="container-fluid">
+
+      <!-- Nav Bar -->
+
+      <nav class="navbar navbar-expand-lg navbar-dark">
+
+        <a class="navbar-brand" href="/">
+                        <div class="logo"></div>
+                        <h1><strong>BizBridge</strong></h1>                     
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#footer">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#pricing">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/artisan/register">Register</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/artisan/login">Login</a>
+            </li>
+          </ul>
+
+        </div>
+      </nav>
+</div>
+</section>
+
+
+<% if (typeof error != 'undefined') { %>
+
+        <% error.forEach(function(error){ %>
+
+              <h5 style="color: red;"><%= error.msg %></h5>
+
+        <% }) %>
+
+      <% } %>
+
+      <% if(success_msg != '') {%>
+        <h6 style="color:green"><%= success_msg %></h6>
+
+      <% } %>
+
+      <% if(error_msg != '') { %>
+
+        <h6 style="color:red"><%= error_msg %></h6>
+
+      <% } %>
+
+    <div class="form-1">
+          
+        <form action="/artisan/register" method="POST" enctype="multipart/form-data">
+            <h3>Artisan Registration Form</h3>
+
+            
+            <div class="alert">
+                <%- include ('partials/messages') %>
+             
+            </div>
+            
+          
+      
+              <p><input type="text" name="cName"  placeholder="Contact Name"></p>
+              <p><input type="text" name="cNumber"  placeholder="Contact Phone Number"></p>
+             <p><input type="email" name="cEmail"  placeholder="Contact Email"></p> 
+             <p><input type="text" name="bName"  placeholder="Business Name"></p> 
+            <p>Are you Registered with CAC?
+                 Yes  <input type="radio" name="cacStatus" id="" value="Registered">
+                 No <input type="radio" name="cacStatus" id="" value="Not Registered">
+              </p>
+              
+              <% let jobTitles = ['AC Repair', 'Architecture','Beauty Salon','Beer Brewing', 'Catering Services','Content Creator','Craft Work','Event Management and Planning','Food Production','General Merchandise','Glass Blowing', 'Hair Stylist', 'Home/Office Cleaning','Interior and Exterior Designs','Information Technology', 'Jewellery Making','Laundry', 'Mechanic',   'Musical Instruments Making','Plumbers', 'Rug Making','Spa Services', 'Wiring'] %>
+              <select name="title" id="" class="job">
+                  <option value="">Your Job Title</option>
+                      <% jobTitles.forEach(function(jtitle){ %>
+      
+                          <option value="<%= jtitle %>"><%= jtitle %></option>
+      
+                      <% }) %>
+                  
+      
+              </select>
+      
+              <% let strengths = ["1", "2-5", "6-10","11-20", "21-50", "51 and above"] %>
+      
+              <select name="staffStrength" id="" class="staff">
+                  <option value="">Your staff strength</option>
+                  <% strengths.forEach(function(strength){ %>
+      
+                      <option value="<%= strength %>"><%= strength %></option>
+      
+                  <% }) %>
+                  
+      
+              </select>
+             <p><input type="text" name="address"  placeholder="Contact Address"></p>
+
+             <% let locations = ['Abia', 'Adamawa', 'Akwa Ibom', 'Anambra', 'Bauchi', 'Bayelsa', 'Benue', 'Borno', 'Cross River', 'Delta', 'Ebonyi', 'Edo',	'Ekiti', 'Enugu', 'Gombe', 'Imo', 'Jigawa', 'Kaduna', 'Kano', 'Katsina', 'Kebbi', 'Kogi', 'Kwara', 'Lagos',	'Nasarawa', 'Niger', 'Ogun', 'Ondo', 'Osun', 'Oyo', 'Plateau', 'Rivers', 'Sokoto', 'Taraba', 'Yobe', 'Zamfara'] %>
+             <select name="city" id="" class="job">
+                 <option value="">Your Location</option>
+                     <% locations.forEach(function(location){ %>
+     
+                         <option value="<%= location %>"><%= location %></option>
+     
+                     <% }) %>
+                 
+     
+             </select>
+             <p><input type="text" name="website"  placeholder="Website URL"></p> 
+             <p><input type="text" name="username"  placeholder="Preferred Username"></p> 
+             <p><input type="password" name="password"  placeholder="Password must be at least 8 characters"></p> 
+             <p><input type="password" name="password2"  placeholder="Confirm Password"></p> 
+            <h3>Company Logo: <input type="file" name="image" placeholder="Upload your company Logo"></h3>
+      
+            <button type="submit" name="register">Register</button>
+      
+         </form>
+
+    </div>
+   
+   
+
+
+<%- include ('partials/footer') %>

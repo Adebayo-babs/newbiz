@@ -1,0 +1,60 @@
+<%- include ('partials/header') -%>
+<%- include ('partials/carousel') -%>
+		<% if (typeof error != 'undefined') { %>
+
+        <% error.forEach(function(error){ %>
+
+              <h5 style="color: red;"><%= error.msg %></h5>
+
+        <% }) %>
+
+      <% } %>
+
+      <% if(success_msg != '') {%>
+        <h6 style="color:green"><%= success_msg %></h6>
+
+      <% } %>
+
+      <% if(error_msg != '') { %>
+
+        <h6 style="color:red"><%= error_msg %></h6>
+
+      <% } %>
+
+            <div class="banner">
+              <h2>We bring clients and reputable service providers together</h2>
+            </div>
+
+            <div class="banner2">
+              <button type="submit" class="listed"><a href="/artisan/register"><h4>Get Your Service Enlisted</h4></a></button>
+               <form action="/" method="POST">
+
+                 <% let industry = ['AC Repair', 'Architecture','Beauty Salon','Beer Brewing', 'Catering Services','Content Creator','Craft Work','Event Management and Planning','Food Production','General Merchandise','Glass Blowing', 'Hair Stylist', 'Home/Office Cleaning','Interior and Exterior Designs','Information Technology', 'Jewellery Making','Laundry', 'Mechanic',   'Musical Instruments Making','Plumbers', 'Rug Making','Spa Services', 'Wiring'] %>
+                    <select name="what">
+                        <option>What service do you need?</option>
+                        <% industry.forEach(function(industries){ %>
+                       <option value="<%= industries %>"><%= industries %></option>>
+                        <% }) %>
+                        </select>
+                  
+                          <% let location = ['Abia', 'Adamawa', 'Akwa Ibom', 'Anambra', 'Bauchi', 'Bayelsa', 'Benue', 'Borno', 'Cross River', 'Delta', 'Ebonyi', 'Edo', 'Ekiti', 'Enugu', 'Gombe', 'Imo', 'Jigawa', 'Kaduna', 'Kano', 'Katsina', 'Kebbi', 'Kogi', 'Kwara', 'Lagos', 'Nasarawa', 'Niger', 'Ogun', 'Ondo', 'Osun', 'Oyo', 'Plateau', 'Rivers', 'Sokoto', 'Taraba', 'Yobe', 'Zamfara'] %>
+                    <select name="where">
+                        <option>Where?</option>
+                        <% location.forEach(function(locations){ %>
+                      <option value="<%= locations %>"><%= locations %></option>>
+                        <% }) %> 
+                        </select> 
+               <a href="/search">
+                <input type="submit" value="SEARCH"/></a>
+                </form>
+                </div>
+
+                   
+                </div></a>
+                
+                <div class="advert"> <h1>PLACE YOUR ADVERT HERE</h1></div>
+                
+            </div>
+
+
+<%- include ('partials/footer') -%>

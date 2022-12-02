@@ -1,0 +1,32 @@
+<%- include ('partials/header') %>
+
+<div class="artisan_list">
+    <h2>Welcome <%= username %> </h2>
+    <%- include ('partials/messages') %>
+
+   
+    <% record.forEach(function(records){ %>
+    
+    <div class="logo_2">
+     <img src="data:image/<%=records.upload.contentType%>;base64,<%=records.upload.data.toString('base64')%>" 
+     width="200" height="200">
+    </div>
+
+    <h3><a href="/edit/<%= records._id %>" class="btn btn-info">Edit</a></h3>
+    <a href="/<%= records._id%>">Delete</a>
+    <a href="/">Sign Out</a>
+    
+    <p>Company Name: <b><%= records.bName %></b></p>
+    <p>Contact Person: <b><%= records.cName %></b> </p>
+    <p>CAC Status: <b><%= records.cacStatus %></b></p>
+    <p>Contact Number: <b><%= records.cNumber %></b> </p>
+    <p>Contact Email: <b><%= records.cEmail %></b></p>
+    <p>Website: <b><%= records.website %></b></p>
+    <p>Address: <b><%= records.address %></b></p>
+    <p>Registered: <%= records.date.toLocaleDateString() %></p>
+    <% }) %>
+</div>
+
+
+
+<%- include ('partials/footer') %>
